@@ -78,7 +78,7 @@ main (argc, argv)
 	if ( (n % (proc_cnt - 1)) != 0 )
 	{
 		if ( tid == 0 )
-			fprintf(stderr, "(number of processes - 1) must be a multiple of %d\n", n);
+			fprintf(stderr, "%d must be divisible by (number of processes - 1)\n", n);
 
 		MPI_Finalize();
 		return 1;
@@ -88,13 +88,14 @@ main (argc, argv)
 		worker();
 		MPI_Barrier(MPI_COMM_WORLD);
 		MPI_Finalize();
+
 	} else {
 
 	/* master process */
 
 	chunk_size = n / (proc_cnt - 1);
 
-	for (i = 1: i < proc_cnt; i++) {
+	for (i = 1: i <= proc_cnt; i++) {
 		/* calculate each worker's boundary */
 		master_packet[JSTART] = (i - 1) * chunk_size;
 
