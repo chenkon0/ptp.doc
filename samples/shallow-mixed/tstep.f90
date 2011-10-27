@@ -26,7 +26,6 @@
 
 subroutine tstep(m,n,alpha,jstart,jend,cpold,cuold,cvold,cp,cu,cv,cpnew,cunew,cvnew,cdpdt,cdudt,cdvdt,firststep,tdt) bind(c)
   use, intrinsic :: ISO_C_BINDING
-  implicit none
 
   integer(kind=C_INT), value :: m, n
   real(kind=C_FLOAT), value :: alpha
@@ -45,8 +44,6 @@ subroutine tstep(m,n,alpha,jstart,jend,cpold,cuold,cvold,cp,cu,cv,cpnew,cunew,cv
   type(C_PTR), value :: cdvdt; real(kind=C_FLOAT), pointer :: dvdt(:,:)
   integer(kind=C_INT), value :: firststep
   real(kind=C_FLOAT), value  :: tdt
-
-  integer i,j
 
   call c_f_pointer(cpold, pold, shape=[m, n])
   call c_f_pointer(cuold, uold, shape=[m, n])
