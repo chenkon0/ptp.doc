@@ -4,7 +4,10 @@ CC = mpicc
 CFLAGS = -g
 FC = mpif90
 FFLAGS = -g
-LIB = -lifcore -limf -ldl
+# gcc compiler:
+LIB = -lgfortran
+# intel compiler:
+#LIB = -lifcore -limf -ldl
 
 SOURCES = calc.c copy.c diag.c init.c main.c time.c tstep.f90 worker.c dump.c
 OBJECTS = calc.o copy.o diag.o init.o main.o time.o tstep.o worker.o dump.o
